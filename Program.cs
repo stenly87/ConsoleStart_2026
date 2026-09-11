@@ -165,6 +165,7 @@ Console.WriteLine($"Результат выражения: {y}");
 // операции > < >= <= == !=
 // > < >= <= - например сравнение чисел, какое больше, меньше, больше или равно
 // меньше или равно
+/*
 int x = 5, y = 10;
 bool result = x < y; // true
 Console.WriteLine(result);
@@ -187,7 +188,7 @@ object o3 = "1";
 Console.WriteLine(o1 == o2); // false ссылки разные!
 o1 = o2; // копирование ссылки
 Console.WriteLine(o1 == o2); // true ссылка одна и та же!
-
+*/
 // существует еще набор логических операций:
 // & && - логическое И (полное и краткое)
 // | || - логическое ИЛИ (полное и краткое)
@@ -271,6 +272,7 @@ else
 // свитч завершается. Если нет совпадений и есть блок default - выполняется он
 
 // ввести день недели и узнать, есть ли оаип в этот день
+/*
 string day = Console.ReadLine();
 switch (day)
 {
@@ -295,10 +297,11 @@ switch (day)
         Console.WriteLine("пон / вт / ср / чт / пт / суб / вск");
         break;
 }
-
+*/
 // тернарный оператор (однострочный if с возвратом значения)
 // x = (логическое выражение) ? значение1 : значение2;
-
+/*
+string day = Console.ReadLine();
 int countOAIP = day == "пон" ? 2 : 3;
 // если day = "пон", countOAIP станет равным 2, иначе 3
 // аналогичный код:
@@ -306,5 +309,92 @@ if (day == "пон")
     countOAIP = 2;
 else
     countOAIP = 3;
+*/
+/*
+bool x = true, y = false, z = true;
+bool result = (x && y) | (z | y);
+Console.WriteLine(result);// true
+result = !x | z & !y;
+Console.WriteLine(result);// true
+result = (x ^ !y) && z;
+Console.WriteLine(result);// false
+*/
 
+// побитовые операции 
+// & | ~ ^
+int x = 1; // 0000 0001
+int y = 1; // 0000 0001 
+Console.WriteLine(x & y); // 0000 0001
+x = 2;     // 0000 0010 
+           // 0000 0001 
+Console.WriteLine(x & y); // 0
+Console.WriteLine(x | y); // 0000 0011
+Console.WriteLine(~x);    // 1111 1101 -3
 
+byte b = 3;
+Console.WriteLine(~b);    // -4
+b = 255;
+Console.WriteLine(~b);    // -256 // результат имеет другой тип
+// x = 0000 0010 
+// 1 = 0000 0001
+Console.WriteLine(x ^ 1); // 3
+
+// операции сдвига << >>
+                           //0000 0001 1
+Console.WriteLine(1 << 1); //0000 0010 2
+Console.WriteLine(1 << 2); //0000 0100 4
+Console.WriteLine(1 << 31); //2^31
+
+Console.WriteLine(int.MinValue >> 31); // -1
+Console.WriteLine(int.MinValue.ToString("B"));
+Console.WriteLine((int.MinValue >> 31).ToString("B"));
+
+// argb
+// 
+uint color = 0xFFAA3355;
+Console.WriteLine(color);
+byte bColor = (byte)color; // 0x55 85
+Console.WriteLine(bColor);
+byte gColor = (byte)(color >> 8); // 0x33 51
+Console.WriteLine(gColor);
+byte rColor = (byte)(color >> 16); // 0xAA 170
+Console.WriteLine(rColor);
+byte aColor = (byte)(color >> 24); // 0xFF 255
+Console.WriteLine(aColor);
+uint second = 0;
+// собираем отдельные цвета из разных переменных в одну
+second = (uint)(aColor << 24) | // сдвигаем на 3 байта
+         (uint)(rColor << 16) | // сдвигаем на 2 байта
+         (uint)(gColor << 8) |  // сдвигаем на 1 байт
+            bColor;
+Console.WriteLine(second.ToString("x").ToUpper());
+
+// веселый  первый бит  1   0001
+// красивый второй бит  2   0010
+// умный    третий бит  4   0100
+// 0000 0000 грустный стремный тупой
+// 0000 0111 веселый красивый умный 
+byte human = 9; //веселый умный 0101
+Console.WriteLine("Наш человек:");
+if ((human & 1) != 0)  // 0101 & 0001 -> 0001
+    Console.WriteLine("веселый");
+if ((human & 2) != 0)  // 0101 & 0010 -> 0000
+    Console.WriteLine("красивый");
+if ((human & 4) != 0)  // 0101 & 0100 -> 0100
+    Console.WriteLine("умный");
+// хранение трех признаков в одном байте экономит нам 2 байта
+
+byte веселый = 1;
+byte красивый = 2;
+byte умный = 4;
+
+human = (byte)(веселый | красивый); // 2 признака
+Console.WriteLine(human); // 3
+human |= умный; // добавили еще один признак
+Console.WriteLine(human); // 7
+human ^= умный; // убрали один признак
+Console.WriteLine(human); // 3
+
+// быстрая проверка на нечетность
+int.TryParse(Console.ReadLine(), out int d);
+Console.WriteLine((d & 1) == 1); // true, если число нечетное
