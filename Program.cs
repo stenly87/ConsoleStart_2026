@@ -319,7 +319,7 @@ Console.WriteLine(result);// true
 result = (x ^ !y) && z;
 Console.WriteLine(result);// false
 */
-
+/*
 // побитовые операции 
 // & | ~ ^
 int x = 1; // 0000 0001
@@ -368,12 +368,13 @@ second = (uint)(aColor << 24) | // сдвигаем на 3 байта
          (uint)(gColor << 8) |  // сдвигаем на 1 байт
             bColor;
 Console.WriteLine(second.ToString("x").ToUpper());
-
+*/
 // веселый  первый бит  1   0001
 // красивый второй бит  2   0010
 // умный    третий бит  4   0100
 // 0000 0000 грустный стремный тупой
 // 0000 0111 веселый красивый умный 
+/*
 byte human = 9; //веселый умный 0101
 Console.WriteLine("Наш человек:");
 if ((human & 1) != 0)  // 0101 & 0001 -> 0001
@@ -398,3 +399,23 @@ Console.WriteLine(human); // 3
 // быстрая проверка на нечетность
 int.TryParse(Console.ReadLine(), out int d);
 Console.WriteLine((d & 1) == 1); // true, если число нечетное
+*/
+
+// 1400 задач, №4.4, стр 23
+int x,y;
+Console.WriteLine("Введите координату х");
+int.TryParse(Console.ReadLine(), out x);
+Console.WriteLine("Введите координату y");
+int.TryParse(Console.ReadLine(), out y);
+int zone = 0;
+if (x > 4)
+    zone = 2;
+else if (x < 0) // в целом это условие лишнее, но почему бы и нет
+{
+    Console.WriteLine("Точка не принадлежит указанным областям");
+    return;
+}
+else
+    zone = 1;
+
+Console.WriteLine($"Точка ({x}/{y}) принадлежит области {zone}");
