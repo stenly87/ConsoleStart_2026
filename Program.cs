@@ -1,93 +1,123 @@
 ﻿/*
- int.TryParse(Console.ReadLine(), out int a);
-int.TryParse(Console.ReadLine(), out int b);
-for (int i = a; i < b; i++) 
-    Console.WriteLine(i);
-*/
-/*
-// можно так
-for(double a = 10, b = 10.4;
-    a <= 25;
-    a++, b++)
-    Console.WriteLine($"{a} {b}");
-// можно так
-for(double a = 10;
-        a <= 25;
-        a ++)
-        Console.WriteLine($"{a} {a + 0.4}");
-*/
-/*
-double cost = 20.4;
-for(int i = 2; i <= 20; i++)
-    Console.WriteLine($"{i}шт. = {i*cost}руб.");
-    */
-/*
-double p, p0 = 1.29, z = 1.25 * Math.Pow(10, -4);
-for (int h = 0; h <= 1000; h += 100)
+// тема Массивы в c#
+// массив это объект, который включает в себя
+// множество значений определенного типа данных
+
+// у массива есть ранг, ранг включает в себя множество элементов
+// рангов у массива может быть несколько
+
+// одноранговый массив можно представить в виде строки или столбца
+// каждый элемент в таком массиве лежит в ячейке, ячейки
+// идут друг за другом
+// у каждой ячейки есть индекс, в одноранговом массиве это одно число
+// индексация массивов всегда начинается с нуля
+// у массива задается некоторый тип данных, соответственно в ячейках
+// может храниться значение, соответствующее заданному типу
+// пример создания массива int[] array = new int[10]
+// int[] - обозначает, что мы собираемся создать массив с одним рангом
+// для типа int, если мы захотим больше рангов, то они указываются запятыми:
+// int[,] - массив с двумя рангами (двумерный)
+// array - название переменной, которая ссылается на массив
+// new - вызывает запуск конструктора объекта, конструктор инициирует
+// объект - выделяет память, располагает данные в куче, возвращает ссылку
+// на объект (которая назначается переменной array)
+// int[10] - уточнение для конструктора - тип данных в некоторых ситуациях
+// может быть другим, число 10 в квадратных скобках означает кол-во ячеек
+// если массив объявлен как int[,], то инициализации будет включать 2 размера
+// через запятую int[,] array2 = new int[10,20]
+// тип данных для массива может быть использован абсолютно любой
+// назначение и чтение значения происходит через указанием имени
+// массива и необходимого индекса
+int[] array = new int[10];
+array[0] = 1; // ячейке с индексом 0 назначается значение 1
+for(int i = 0; i < 10; i++)
+    array[i] = i; // назначение значений через цикл
+Console.WriteLine(array[0]); // вывод значения ячейки в консоль
+int sum = 0;
+for(int i = 0; i < 10; i++)
+    sum += array[i]; // чтение ячейки в цикле
+Console.WriteLine(sum); // общая сумма всех значений в массиве
+// при попытке обратиться к несуществующему индексу в массиве произойдет
+// выброс исключения и приложение аварийно завершится
+int rank = array.Rank; // размерность массива (сколько рангов)
+Console.WriteLine($"rank = {rank}"); // 1
+int[,] array2 = new int[10,20]; // 10 это строки, 20 это столбцы
+Console.WriteLine($"array2.Rank = {array2.Rank}"); // 2
+int length = array2.Length; // длина массива (общее кол-во всех ячеек)
+// для массивов с несколькими рангами Length вернет сумму всех ячеек во всех рангах
+// метод GetUpperBound - возвращает длину ранга
+for (int i = 0; i < array2.GetUpperBound(0); i++)
 {
-    p = p0 * Math.Pow(Math.E, -h * z);
-    Console.WriteLine($"h = {h} p = {p}");
+    for (int j = 0; j < array2.GetUpperBound(1); j++)
+    {
+        array2[i, j] = i * j;
+        Console.Write(array2[i, j] + " ");
+    }
+    Console.WriteLine();
 }
+// возвращаемся к одномерным массивам
+// т.к. индексация идет с нуля, последний элемент имеет индекс = длина - 1
+int last = array[array.Length - 1]; // можно вычислить индекс из длины
+Console.WriteLine(last);
+last = array[^1]; // можно воспользоваться спец синтаксисом
+Console.WriteLine(last);
+int prelast = array[^2]; // можно воспользоваться спец синтаксисом
+Console.WriteLine(prelast); // предпоследний элемент
+// массивы являются неизменяемыми с точки зрения размера
+// если массива не хватает - создаем новый:
+int[] array20 = new int[20];
+array.CopyTo(array20, 0);// скопировали значения из array в array20
+array = array20; // можно поменять ссылку у исходной переменной на новый массив
+// array = array20; // копирование ссылки!! потому что массивы ссылочные
+// теперь array и array20 ссылаются на один и тот же объект в памяти
+GC.Collect(); // принудительный сборщик мусора
+// сборщик мусора ищет объекты-сироты, и убивает их (очищает память)
+// объекты-сироты - объекты, на которые никто не ссылается
 */
-//«Странный муж» ☺
-/*
-Console.WriteLine("Сколько раз он поменял решение???");
-int.TryParse(Console.ReadLine(), out int n);
-double totalPath = 0;
-double path = 0;
-for (double i = 1; i <= n; i++)
-{
-    totalPath += 1 / i;
-    path += Math.Pow(-1, i) *  (1 / i);
-}
-Console.WriteLine($"Расстояние от дома: {Math.Round(Math.Abs(path), 2)}км");
-Console.WriteLine($"Пройденный путь: {Math.Round(totalPath, 2)}км");
-*/
-// фибоначчи
-/*
-int.TryParse(Console.ReadLine(), out int n);
-int f1 = 0, f2 = 1;
-for (int i = 1; i <= n; i++)
-{
-    Console.WriteLine(f2);
-    int temp = f2;
-    f2 += f1;
-    f1 = temp;
-}
-Console.WriteLine($"{n}-ый член фибоначчи = {f1}");
-*/
-// амебы (1шт делится каждый 3 часа на 2шт)
-/*
-int count = 1;
+// 11.42
+
 Random random = new Random();
-for (int i = 1; i <= 8; i++)
+int l = 10;
+int[] array = new int[l];
+for (int i = 0; i < array.Length; i++)
+    array[i] = random.Next(-100, 101); // случайные значения в диапазоне
+
+int sum = 0, p = 1, sumSquare = 0;
+for (int i = 0; i < array.Length; i++)
 {
-    count *= 2;
-    if (random.NextDouble() > 0.7)
-    {
-        count = (int)Math.Round(count / 3f, 5);
-        if (count < 0)
-        {
-            Console.WriteLine("Все амебы сдохли");
-            break;
-        }
-
-        Console.WriteLine($"Произошло заболевание. Часть амеб сдохло. Осталось {count}шт.");
-    }
-
-    if (random.NextDouble() > 0.7)
-    {
-        count = 0;
-        Console.WriteLine("Пришел пьяный лаборант и смыл амеб в унитаз");
-        break;
-    }
-
-    if (random.NextDouble() > 0.5)
-    {
-        Console.WriteLine("Произошли выборы. Кол-во амеб увеличилось на 146%");
-        count = (int)((count / 100f) * 146);
-    }
-
-    Console.WriteLine($"спустя {i*3} часа/ов амеб стало {count}");
+    sum += array[i];
+    p *= array[i];
+    sumSquare += array[i] * array[i];
 }
-*/
+
+Console.WriteLine($"Сумма = {sum}");
+Console.WriteLine($"Произведение = {p}");
+Console.WriteLine($"Сумма квадратов = {sumSquare}");
+
+int sumFirst6 = 0;
+for (int i = 0; i < 6; i++)
+    sumFirst6 += array[i];
+Console.WriteLine($"Сумма первых шести элементов = {sumFirst6}");
+
+Console.Write("K1? ");
+int.TryParse(Console.ReadLine(), out int k1);
+Console.Write("K2? ");
+int.TryParse(Console.ReadLine(), out int k2);
+if (k2 < k1 || k1 < 0 || k2 >= l || k1 >= l || k2 < 0)
+{
+    Console.WriteLine("Введены некорректные значения");
+    return;
+}
+
+int sumK1toK2 = 0;
+for(int i = k1; i <= k2; i++)
+    sumK1toK2 += array[i];
+Console.WriteLine($"Сумма элементов с индексами от k1 по k2 = {sumK1toK2}");
+
+double среднееАрифметическое = sum / (double)l;
+Console.WriteLine($"Среднее арифметическое элементов = {среднееАрифметическое}");
+
+double среднееАрифметическоеK1toK2 = sumK1toK2 / (double)(k2 - k1 + 1);
+Console.WriteLine($"Среднее арифметическое элементов с индексами от k1 по k2  = {среднееАрифметическое}");
+
+   
