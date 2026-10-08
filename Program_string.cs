@@ -254,10 +254,11 @@ str = builder.ToString();
 Console.WriteLine(str);*/
 
 //12.125
+/*
 Console.WriteLine("Введите предложение");
 string str = Console.ReadLine();//АРГЕНТИНА МАНИТ НЕГРА
 str = str.Replace(" ", ""); // АРГЕНТИНАМАНИТНЕГРА
-/*
+
 string str2 = new string(str.Reverse().ToArray());
 Console.WriteLine(str2);
 Console.WriteLine(str == str2);
@@ -265,7 +266,7 @@ Console.WriteLine(str == str2);
 // создание строки возможно из массива символов
 string s = new string(['a', 'b', 'c', 'd', 'e', 'f']);
 s = new string('c', 10);// cccccccccc
-*/
+
 
 bool result = true;
 for (int i = 0, j = str.Length - 1; i < str.Length; i++, j--)
@@ -277,3 +278,4 @@ for (int i = 0, j = str.Length - 1; i < str.Length; i++, j--)
     }
 }
 Console.WriteLine(result);
+*/
