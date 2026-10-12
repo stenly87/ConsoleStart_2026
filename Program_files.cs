@@ -121,6 +121,84 @@ Console.WriteLine(text);
 //File.AppendAllText(@"C:\1\2\3.txt", "те\r\nкст");
 
 // проверки, существует ли директория или файл
-bool result = Directory.Exists("путь");
+/*bool result = Directory.Exists("путь");
 result = File.Exists("путь к файлу");
-Console.WriteLine(result);
+Console.WriteLine(result);*/
+
+// Потоковая работа с файлами
+/*
+string someString = "какая-то строка\n";
+byte[] array = Encoding.UTF8.GetBytes(someString);/
+/*FileStream fs = File.Open("test.txt", FileMode.Create, FileAccess.Write);
+fs.Write(array, 0, array.Length); // записать в файл массив array, начиная с 0 индекса в кол-ве: все байты array
+fs.Write(array, 0, array.Length); 
+fs.Close();
+fs.Dispose();*/
+//тоже самое, но без лишних строк про Close и Dispose:
+//по окончанию тела using происходит закрытие файла и освобождение памяти
+/*using (FileStream fs = File.Open("test.txt", FileMode.Create, FileAccess.Write))
+{
+    fs.Write(array, 0, array.Length); // записать в файл массив array, начиная с 0 индекса в кол-ве: все байты array
+    fs.Write(array, 0, array.Length);
+}
+
+bool test = true;
+byte[] array2 = BitConverter.GetBytes(test);
+// array2 становится массивом размером в 4 байта, потому что число 121332132 - int, размер 4 байта 
+array2 = BitConverter.GetBytes(121332132); // int32
+int getValue = BitConverter.ToInt32(array2, 0);*/
+// записать 100 чисел подряд
+/*using (FileStream fs = File.Open("test1.bin", FileMode.Create, FileAccess.Write))
+{
+    for (int i = 0; i < 100; i++)
+    {
+        array2 = BitConverter.GetBytes(i);// array2 опять становится массивом байт размером 4 байта, но с другим числом
+        fs.Write(array2, 0, array2.Length); // записываем 4 байта
+    }
+}*/
+/*
+using (FileStream fs = File.Open("test1.bin", FileMode.Open, FileAccess.Read))
+{
+    for (int i = 0; i < 100; i++)
+    {
+        //fs.Read перезаписывает array2
+        fs.Read(array2, 0, 4); // прочесть из потока fs 4 байта в массив array, записываем их с 0 индекса
+        // BitConverter получает int из 4 байт в массиве array2
+        Console.WriteLine(BitConverter.ToInt32(array2, 0));
+    }
+}*/
+
+
+// оаип, 91 стр, 1 задание
+Random rng = new ();
+byte[] array = new  byte[4];
+int value;
+using (var fs = File.Open("f", FileMode.Create, FileAccess.Write))
+{
+    for (int i = 0; i < 100; i++)
+    {
+        fs.Write(BitConverter.GetBytes(rng.Next(1, 1001)), 0, 4);
+    }
+}
+
+using (var fs = File.Open("f", FileMode.Open, FileAccess.Read))
+using (var gs = File.Open("g", FileMode.Create, FileAccess.Write))
+{
+    for (int i = 0; i < 100; i++)
+    {
+        fs.Read(array, 0, 4);
+        value = BitConverter.ToInt32(array, 0);
+        if (value % 2 == 0)
+            gs.Write(array, 0, 4);
+    }
+}
+
+using (var gs = File.Open("g", FileMode.Open, FileAccess.Read))
+{
+    while(gs.Position < gs.Length)
+    {
+        gs.Read(array, 0, 4);
+        value = BitConverter.ToInt32(array, 0);
+        Console.WriteLine(value);
+    }
+}
