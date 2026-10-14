@@ -171,34 +171,24 @@ using (FileStream fs = File.Open("test1.bin", FileMode.Open, FileAccess.Read))
 
 // оаип, 91 стр, 1 задание
 Random rng = new ();
-byte[] array = new  byte[4];
 int value;
-using (var fs = File.Open("f", FileMode.Create, FileAccess.Write))
-{
+using (var fs = File.OpenWrite("f"))
+using (var bw = new BinaryWriter(fs))
     for (int i = 0; i < 100; i++)
-    {
-        fs.Write(BitConverter.GetBytes(rng.Next(1, 1001)), 0, 4);
-    }
-}
+        bw.Write(rng.Next(1, 1001));
 
-using (var fs = File.Open("f", FileMode.Open, FileAccess.Read))
-using (var gs = File.Open("g", FileMode.Create, FileAccess.Write))
-{
+using (var fs = File.OpenRead("f"))
+using (var gs = File.OpenWrite("g"))
+using (var br = new BinaryReader(fs))
+using (var bw = new BinaryWriter(gs))
     for (int i = 0; i < 100; i++)
     {
-        fs.Read(array, 0, 4);
-        value = BitConverter.ToInt32(array, 0);
+        value = br.ReadInt32();
         if (value % 2 == 0)
-            gs.Write(array, 0, 4);
+            bw.Write(value);
     }
-}
 
-using (var gs = File.Open("g", FileMode.Open, FileAccess.Read))
-{
+using (var gs = File.OpenRead("g")) 
+using (var br = new BinaryReader(gs))
     while(gs.Position < gs.Length)
-    {
-        gs.Read(array, 0, 4);
-        value = BitConverter.ToInt32(array, 0);
-        Console.WriteLine(value);
-    }
-}
+        Console.WriteLine(br.ReadInt32());
