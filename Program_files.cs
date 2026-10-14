@@ -192,3 +192,14 @@ using (var gs = File.OpenRead("g"))
 using (var br = new BinaryReader(gs))
     while(gs.Position < gs.Length)
         Console.WriteLine(br.ReadInt32());
+
+
+// внутри файла мы можем быстро сместиться на нужную позицию
+// без чтения лишних байт
+using (var gs = File.OpenRead("g"))
+{
+    gs.Seek(20, SeekOrigin.Begin); // сдвинуться на 20 байт относительно старта файла
+    gs.Seek(0, SeekOrigin.Begin); // свинуться на начало
+    gs.Seek(0, SeekOrigin.End); // сдвинуться в конец файла
+    gs.Seek(-20, SeekOrigin.Current); // сдвинуться на 20 байт влево от текущей позиции
+}
