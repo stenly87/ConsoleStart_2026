@@ -1,7 +1,8 @@
 ﻿// работа с файлами
-
+/*
 using System.IO;
 using System.Text; // Input Output
+*/
 //DirectoryInfo dirInfo = Directory.CreateDirectory("путь к создаваемой директории");
 
 // если путь указан не полностью (не начиная с буквы диска), 
@@ -170,6 +171,7 @@ using (FileStream fs = File.Open("test1.bin", FileMode.Open, FileAccess.Read))
 
 
 // оаип, 91 стр, 1 задание
+/*
 Random rng = new ();
 int value;
 using (var fs = File.OpenWrite("f"))
@@ -203,3 +205,148 @@ using (var gs = File.OpenRead("g"))
     gs.Seek(0, SeekOrigin.End); // сдвинуться в конец файла
     gs.Seek(-20, SeekOrigin.Current); // сдвинуться на 20 байт влево от текущей позиции
 }
+*/
+
+// стр 91, 4 задание
+/*
+int count = 0, leftValue = 0;
+Random rnd = new ();
+Console.WriteLine("кол-во чисел?");
+int n = int.Parse(Console.ReadLine());
+using (var fs = File.Create("f"))
+using (var bw = new BinaryWriter(fs))
+    for (int i = 0; i < n; i++)
+    {
+        leftValue = rnd.Next(-5, 6);
+        bw.Write(leftValue); // 4 байта потому что rnd.Next -> int
+        Console.WriteLine(leftValue);
+    }
+Console.WriteLine(new string('-', 30));
+
+List<long> skipPositions = new();
+long lastPosition = 0;
+using (var fs = File.Open("f", FileMode.Open, FileAccess.ReadWrite))
+using (var br = new BinaryReader(fs))
+using (var bw = new BinaryWriter(fs))
+    for (int i = 0; i < n; i++) // читаем числа для левой части сравнения
+    {
+        leftValue  = br.ReadInt32(); // 4 байта, int
+        if (leftValue == 0)
+            continue;
+        
+        lastPosition = fs.Position; // запомнили позицию, с которой начнется чтение следующего числа для левой части
+        // в случае с доп массивом нам не нужно изменять файл
+        if (skipPositions.Contains(lastPosition))
+            continue;
+        while (fs.Position < fs.Length) // чтение до конца файла
+        {
+            if (br.ReadInt32() == -leftValue)
+            {
+                if (skipPositions.Contains(fs.Position))
+                    continue;
+                count++;
+                // для большей точности мы перезаписали файл
+                // в некоторых случаях так нельзя делать
+                //fs.Seek(-4, SeekOrigin.Current);
+                //bw.Write(0);
+                // вместо перезаписи можно запомнить позицию, проверять ее в двух местах
+                skipPositions.Add(fs.Position);
+                Console.WriteLine($"Найдена пара для числа {leftValue}");
+                break;
+            }
+        }
+        // возвращаемся в запомненную ранее позицию
+        // для правильного выполнения цикла for
+        fs.Seek(lastPosition, SeekOrigin.Begin);
+    }
+Console.WriteLine($"Кол-во противоположных пар чисел: {count}");
+*/
+
+// стр 91, 5 задание
+/*
+Random rnd = new ();
+Console.WriteLine("кол-во чисел?");
+int n = int.Parse(Console.ReadLine());
+using (var fs = File.Create("f"))
+using (var bw = new BinaryWriter(fs))
+    for (int i = 0; i < n; i++)
+        bw.Write(rnd.Next(1, 10)); // 4 байта потому что rnd.Next -> int
+int value = 0;
+bool exist;
+using (var fs = File.OpenRead("f"))
+using (var gs = File.Open("g", FileMode.Create, FileAccess.ReadWrite))
+using (var br = new BinaryReader(fs))
+using (var brG = new BinaryReader(gs))
+using (var bwG = new BinaryWriter(gs))
+{
+    for (int i = 0; i < n; i++)
+    {
+        value = br.ReadInt32();
+        // переходим в начало файла g, чтобы прочитать его целиком и сравнить все значения с value
+        gs.Seek(0, SeekOrigin.Begin);
+        exist = false;
+        while (gs.Position < gs.Length)
+        {
+            if (brG.ReadInt32() == value)
+            {
+                exist = true;
+                break;
+            }
+        }
+        // exist - показатель - выполнится или нет условие в цикле
+        if (!exist) // если условие не выполнилось, дубликатов нет
+        {
+            bwG.Write(value); // записываем в конец файла новое число
+            Console.WriteLine(value);
+        }
+    }
+}*/
+
+// стр 91, 12
+/*
+int value;
+Random rnd = new ();
+Console.WriteLine("кол-во чисел?");
+int n = int.Parse(Console.ReadLine());
+Console.WriteLine("Записаны числа:");
+using (var fs = File.Create("f"))
+using (var bw = new BinaryWriter(fs))
+    for (int i = 0; i < n; i++)
+    {
+        value = rnd.Next(-100, 100);
+        bw.Write(value);
+        Console.WriteLine(value);
+    }
+Console.WriteLine("Поиск наибольшего числа...");
+int max = Int32.MinValue;
+using (var fs = File.OpenRead("f"))
+using (var br = new BinaryReader(fs))
+    while (fs.Position < fs.Length)
+    {
+        value = br.ReadInt32();
+        if (value > max)
+            max = value;
+    }
+Console.WriteLine(max);
+*/
+
+// кроме filestream мы можем пользоваться текстовыми стримами:
+/*
+using (StreamWriter sw = new StreamWriter("f"))
+{
+    sw.WriteLine("строка заканчивается переходом на новую строку");
+    string s = "строка без перехода на новую строчку";
+    sw.Write(s.Length);
+    sw.Write(s);
+    sw.Write(100);
+    sw.Write((long)1000);
+}
+
+using(StreamReader sr = new StreamReader("f"))
+{
+    string line = sr.ReadLine(); // прочесть строку
+    Console.WriteLine(line);
+    line = sr.ReadLine(); // прочесть строку
+    Console.WriteLine(line);
+}*/
+
