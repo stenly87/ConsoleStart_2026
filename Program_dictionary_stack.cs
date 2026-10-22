@@ -110,10 +110,11 @@ int sum(int value)
 }*/
 
 // очередь
+/*
 Queue<int> queue = new Queue<int>();
 queue.Enqueue(1); // добавление элемента
 int value = queue.Dequeue(); // получить элемент из очереди и удалить
 int count = queue.Count; // кол-во элементов в очереди
 value = queue.Peek(); // прочитать элемент без удаления
-
+*/
 //Queue используется для последовательной обработки команд, когда важна очередность
