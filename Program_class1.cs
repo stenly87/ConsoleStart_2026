@@ -52,6 +52,7 @@ public class Program
         Human human = new();
         human.FirstName = "Петр";
         human.LastName = "Петрович";
+        //human._lastName = ""; //Cannot access private field '_lastName' here
         Console.WriteLine(human.FIO); //"Петр Петрович"
 
         human.Age = 40;
