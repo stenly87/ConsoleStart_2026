@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp2;
+﻿/*namespace ConsoleApp2;
 
 public class Program
 {
@@ -163,3 +163,6 @@ public delegate int Calc(int a, int b);
 
 // делегат для сортировки - принимает 2 аргумента, возвращает bool
 public delegate bool Compare(int a, int b);
+
+
+*/
