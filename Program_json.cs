@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿/*
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -145,3 +146,6 @@ public class Curator
     public string Name { get; set; }
     public List<Group> Groups { get; set; } = new();
 }
+
+
+*/
