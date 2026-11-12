@@ -34,7 +34,7 @@ public class Program_class4
     /// <param name="args">Что это за аргумент</param>
     public static void Main(string[] args)
     {
-        /*List<Human> family = new();
+        List<Human> family = new();
         family.Add(new Woman { Surname = "Петрова" });
         family.Add(new Man { Surname = "Петров" });
         family.Add(new Granny { Surname = "Петрова" });
@@ -51,7 +51,7 @@ public class Program_class4
         //Man man = (Man)abstractHuman; // это компилируется, но при выполнении будет ошибка  Unable to cast object of type...
         Man man = new();
         abstractHuman = man; // такое действие возможно в любой момент, поскольку дочерний класс имеет состояние родительского класса
-        Man man2 = (Man)abstractHuman;// теперь преобразование сработает! потому что в памяти ссылка типа Human указывает на объект типа Man*/
+        Man man2 = (Man)abstractHuman;// теперь преобразование сработает! потому что в памяти ссылка типа Human указывает на объект типа Man
         
         Goblin gob1 = new Goblin();
         Goblin gob2 = new Goblin();

@@ -1,5 +1,4 @@
-﻿/*
-namespace ConsoleApp2;
+﻿namespace ConsoleApp2;
 
 public class Program
 {
@@ -77,4 +76,4 @@ public class Program
             return a;
         return a + Sum(a + 1);
     }*/
-//}
+}

@@ -1,4 +1,4 @@
-﻿/*namespace ConsoleApp2;
+﻿namespace ConsoleApp2;
 
 public class Program
 {
@@ -165,4 +165,3 @@ public delegate int Calc(int a, int b);
 public delegate bool Compare(int a, int b);
 
 
-*/

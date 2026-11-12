@@ -38,8 +38,8 @@ public class Program
         group.PrintInfo();
     }
 }
-*/
-/*
+
+
 public class Program
 {
     public static void Main(string[] args)
@@ -71,7 +71,7 @@ public class Program
 }
 */
 // использование класса CatDog
-/*
+
 public class Program
 {
     public static void Main(string[] args)
@@ -99,7 +99,7 @@ public class Program
         } while (command != "exit");
 
     }
-}*/
+}
 
 
 // тело класса состоит из данных и поведения
@@ -133,7 +133,7 @@ public class Program
 // protected - элемент доступен внутри класса и внутри потомков класса
 // private - доступ только внутри класса
 
-/*
+
 internal class Student
 {
     public string FirstName;
@@ -284,7 +284,6 @@ public class CatDog
     }
 }
 
-*/
 // static - помечает класс или элемент класса статичным
 // статичные элементы класса существуют в единственном экземпляре
 // для использования статичных элементов не нужны экземпляры класса
@@ -310,8 +309,6 @@ public class CatDog
 // у деструктора имя совпадает с классом, вместо модификатора доступа
 // у деструктора стоит знак ~, аргументов нет
 
-/*
- * 
 class KillMe
 {
     private static int autoincrement = 1;
@@ -329,13 +326,13 @@ class KillMe
     }
 }
 
-*/
+
 // свойства - элементы, с помощью которых можно управлять полями
 // поля в классе принято создать как private или protected
 // с помощью свойств можно производить дополнительные проверки перед
 // назначением полей или производить вычисления и возвращать результат
 
-/*
+
 public class Human
 {
     // в свойствах есть две части get; set;
@@ -379,4 +376,3 @@ public class Human
     // свойство FIO будет доступно только для чтения
     public string FIO { get => $"{FirstName} {LastName}"; }
 }
-*/

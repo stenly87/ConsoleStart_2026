@@ -7,4 +7,35 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="Program_class4.cs" />
+      <None Include="Program_class4.cs" />
+      <Compile Remove="Program_array.cs" />
+      <None Include="Program_array.cs" />
+      <Compile Remove="Program_array_methods.cs" />
+      <None Include="Program_array_methods.cs" />
+      <Compile Remove="Program_class1.cs" />
+      <None Include="Program_class1.cs" />
+      <Compile Remove="Program_class2.cs" />
+      <None Include="Program_class2.cs" />
+      <Compile Remove="Program_class3.cs" />
+      <None Include="Program_class3.cs" />
+      <Compile Remove="Program_string.cs" />
+      <None Include="Program_string.cs" />
+      <Compile Remove="Program_dictionary_stack.cs" />
+      <None Include="Program_dictionary_stack.cs" />
+      <Compile Remove="Program_cycle_samples.cs" />
+      <None Include="Program_cycle_samples.cs" />
+      <Compile Remove="Program_methods.cs" />
+      <None Include="Program_methods.cs" />
+      <Compile Remove="Program_recursive.cs" />
+      <None Include="Program_recursive.cs" />
+      <Compile Remove="Program_json.cs" />
+      <None Include="Program_json.cs" />
+      <Compile Remove="Program_files.cs" />
+      <None Include="Program_files.cs" />
+      <Compile Remove="Program_simple_types.cs" />
+      <None Include="Program_simple_types.cs" />
+    </ItemGroup>
+
 </Project>

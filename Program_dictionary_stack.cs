@@ -7,7 +7,7 @@
 //Dictionary<ТипКлюча, ТипЗначения> dictionary =
 //  new Dictionary<ТипКлюча, ТипЗначения>();
 
-/*
+
 Dictionary<string, string> sample1 = new();
 // string - тип ключа. Ключи не могут повторяться для разных значений
 // string - тип значения, значения могут повторяться, но ключи должны быть разные
@@ -48,7 +48,7 @@ var allValues = sample1.Values.ToArray();
 foreach (var val in allValues)
     Console.WriteLine(val);
 
-*/
+
 
 // стопка Stack очередь Queue
 //LIFO - last input first output - последним пришел - первым вышел (стопка, стек)
@@ -58,7 +58,7 @@ foreach (var val in allValues)
 // но берем лист сверху (т.е. последний лист идет в обработку первым)
 
 // пример создания стека
-/*
+
 Stack<int> stack = new Stack<int>();
 // помещение значения в стек идет через метод push
 stack.Push(10);
@@ -79,8 +79,7 @@ Console.WriteLine($"Кол-во элементов в стеке:" + stack.Count
 // если вызвать Pop на стеке с Count == 0, то будет исключение
 // стек удобно использовать для хранения истории действий и чего-то подобного
 // стек может заменить рекурсивный метод
-*/
-/*
+
 int value = sum(1);
 Console.WriteLine(value);
 
@@ -107,14 +106,13 @@ int sum(int value)
             stack.Push(++a);
     } 
     return result;
-}*/
-
+}
 // очередь
-/*
+
 Queue<int> queue = new Queue<int>();
 queue.Enqueue(1); // добавление элемента
 int value = queue.Dequeue(); // получить элемент из очереди и удалить
 int count = queue.Count; // кол-во элементов в очереди
 value = queue.Peek(); // прочитать элемент без удаления
-*/
+
 //Queue используется для последовательной обработки команд, когда важна очередность

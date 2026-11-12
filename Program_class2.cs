@@ -1,4 +1,4 @@
-﻿/*using System.Collections;
+﻿using System.Collections;
 
 namespace ConsoleApp2;
 
@@ -132,4 +132,3 @@ public class BookShelf
 //спрашивали как быстро создать шаблон со свойствами
 //есть вариант использовать записи, но это иммутабельный ссылочный тип данных, который ведет себя как структура
 record BookRecord(string title, string author, string publisher, string pages);
-*/

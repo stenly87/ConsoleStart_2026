@@ -1,6 +1,6 @@
 ﻿// строки в c#
 // тип string - ссылочный
-/*
+
 using System.Text;
 
 string someThing = "Hello World";
@@ -17,7 +17,7 @@ Console.WriteLine("someThing " + someThing);
 // получим ссылку на нее. Случайно сломать строку с помощью
 // второй ссылки нельзя.
 //someThing[4] = ' '; // не скомпилируется
-/*
+
 foreach (int ch in someThing)
 {
     Console.Write(ch);
@@ -29,8 +29,8 @@ foreach (char ch in someThing)
     Console.Write(ch);
     Console.Write(' ');
 }
-*/
-/*
+
+
 Console.WriteLine("utf8");
 int index = 65;
 for (; index < 123; )
@@ -53,8 +53,8 @@ for (; index < 1200; )
     }
     Console.WriteLine();
 }
-*/
-/*
+
+
 int length = someThing.Length; // длина строки
 //строка не ограничена по размерам программно, только технически
 //максимальный размер строки зависит от ОЗУ компьютера
@@ -122,29 +122,29 @@ array = str.Split(splitters);// деление с несколькими раз�
 // удаление пустых подстрок (длиной 0)
 array = str.Split(splitters, StringSplitOptions.
                                 RemoveEmptyEntries);
-*/
+
 
 
 // 12.2
 
-/*Console.Write("Введите государство:");
+Console.Write("Введите государство:");
 string country = Console.ReadLine();
 Console.Write("Введите столицу:");
 string town = Console.ReadLine();
 string result = $"Столица государства {country}  – город {town}";
-Console.WriteLine(result);*/
+Console.WriteLine(result);
 
 // так тоже можно, но нет ссылки на результат и не оттеняется ввод данных
 //Console.WriteLine($"Столица государства {Console.ReadLine()}  – город {Console.ReadLine()}");
 
 //12.5
-/*Console.Write("Введите название футбольного клуба:");
+Console.Write("Введите название футбольного клуба:");
 string club = Console.ReadLine();
 int result = club.Length;
-Console.WriteLine($"Кол-во символов: {result}");*/
+Console.WriteLine($"Кол-во символов: {result}");
 
 //12.9
-/*
+
 Console.Write("Введите страну 1:");
 string country1 = Console.ReadLine();
 Console.Write("Введите страну 2:");
@@ -154,38 +154,38 @@ string temp = country1;
 country1 = country2;
 country2 = temp;
 Console.WriteLine($"country1 = {country1}, country2 = {country2}");
-*/
+
 
 //12.12
-/*Console.Write("Введите слово:");
+Console.Write("Введите слово:");
 string word = Console.ReadLine();
-Console.WriteLine(word[^1]);// последний символ*/
+Console.WriteLine(word[^1]);// последний символ
 
 //12.17
-/*Console.Write("Введите слово:");
+Console.Write("Введите слово:");
 string word = Console.ReadLine();
 //string result = word[1] + "" + word[3]; // можно так или сяк
 string result = word[1].ToString() + word[3];
-Console.WriteLine(result);*/
+Console.WriteLine(result);
 
 //12.20
-/*Console.Write("Введите слово четной длины:");
+Console.Write("Введите слово четной длины:");
 string word = Console.ReadLine();
 string result = word.Substring(0, word.Length / 2);
-Console.WriteLine(result);*/
+Console.WriteLine(result);
 
 //12.21
-/*Console.Write("Введите слово:");
+Console.Write("Введите слово:");
 string word = Console.ReadLine();
 Console.Write("Введите m:");
 int.TryParse(Console.ReadLine(), out int m);
 Console.Write("Введите n:");
 int.TryParse(Console.ReadLine(), out int n);
 string result = word.Substring(m, n - m + 1);
-Console.WriteLine(result);*/
+Console.WriteLine(result);
 
 //12.25
-/*string str = "программа";
+string str = "программа";
 string result = str.
      Insert(3, str[str.IndexOf('м')].ToString())
     .Substring(1, 3);
@@ -193,17 +193,17 @@ Console.WriteLine(result);
 result = str.Insert(str.LastIndexOf('м'), str[0].ToString());
 result = result.Remove(result.LastIndexOf('м'), 1)
     .Substring(4);
-Console.WriteLine(result);*/
+Console.WriteLine(result);
 
 //12.29
-/*string str = "вирус";
+string str = "вирус";
 string result = str.Replace("вир", "фок");
-Console.WriteLine(result);*/
+Console.WriteLine(result);
 
 //12.79
 //Console.WriteLine("Введите несколько слов через пробел");
 //string str = Console.ReadLine();
-/*
+
 string temp = string.Empty;
 int count = 6;
 for (int i = 0; i < str.Length && count > 0; i++)
@@ -216,23 +216,23 @@ for (int i = 0; i < str.Length && count > 0; i++)
     }
     else
         temp += str[i];
-}*/
+}
 // проще и компактнее с точки кол-ва созданных строк в памяти
-/*string[] words = str.Split();
+string[] words = str.Split();
 for (int i = 0; i < words.Length && i < 6; i++)
 {
     Console.WriteLine(words[i]);
-}*/
+}
 
 //12.103
-/*Console.WriteLine("Введите предложение");
+Console.WriteLine("Введите предложение");
 string str = Console.ReadLine();
 string result = str.Replace("да", "не");
-Console.WriteLine(result);*/
+Console.WriteLine(result);
 
 //12.115
 
-/*
+
 using System.Text;
 
 Console.WriteLine("Введите предложение");
@@ -251,10 +251,10 @@ StringBuilder builder = new StringBuilder(str);
 builder[indexО] = 'a';
 builder[indexA] = 'о';
 str = builder.ToString();
-Console.WriteLine(str);*/
+Console.WriteLine(str);
 
 //12.125
-/*
+
 Console.WriteLine("Введите предложение");
 string str = Console.ReadLine();//АРГЕНТИНА МАНИТ НЕГРА
 str = str.Replace(" ", ""); // АРГЕНТИНАМАНИТНЕГРА
@@ -278,4 +278,3 @@ for (int i = 0, j = str.Length - 1; i < str.Length; i++, j--)
     }
 }
 Console.WriteLine(result);
-*/
