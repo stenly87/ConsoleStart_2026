@@ -36,6 +36,8 @@
       <None Include="Program_files.cs" />
       <Compile Remove="Program_simple_types.cs" />
       <None Include="Program_simple_types.cs" />
+      <Compile Remove="Program_interface1.cs" />
+      <None Include="Program_interface1.cs" />
     </ItemGroup>
 
 </Project>

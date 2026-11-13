@@ -139,7 +139,7 @@ public class Zoo
     }
 }
 
-public class Program_interface
+public class Program_interface1
 {
     public static void Main(string[] args)
     {
