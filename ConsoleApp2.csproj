@@ -40,6 +40,8 @@
       <None Include="Program_interface1.cs" />
       <Compile Remove="Program_interface2.cs" />
       <None Include="Program_interface2.cs" />
+      <Compile Remove="Exercise4.cs" />
+      <None Include="Exercise4.cs" />
     </ItemGroup>
 
 </Project>
